@@ -138,28 +138,33 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# config/settings.py ichidagi AWS/S3 qismini shu bilan almashtir:
+
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
-AWS_DEFAULT_ACL = None
-AWS_QUERYSTRING_AUTH = True
 
-# Media files (Uploads)
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_ROOT = ''
-MEDIA_URL = (
-    f"{AWS_S3_ENDPOINT_URL.rstrip('/')}/{AWS_STORAGE_BUCKET_NAME}/"
-    if AWS_S3_ENDPOINT_URL and AWS_STORAGE_BUCKET_NAME
-    else '/media/'
-)
+# MUHIM: Supabase uchun quyidagi 4 ta sozlama shart!
+AWS_S3_REGION_NAME = 'us-east-1'  # Supabase S3 uchun doim us-east-1 bo'lishi kerak
+AWS_S3_SIGNATURE_VERSION = 's3v4' # Imzo versiyasi v4 bo'lishi shart
+AWS_S3_ADDRESSING_STYLE = 'path'  # Supabase 'virtual' uslubni tanimaydi, faqat 'path'
+AWS_QUERYSTRING_AUTH = True       # Har bir havola uchun avtomatik imzo yaratadi
 
+# Statik fayllar va Media uchun Storage sozlamalari
 STORAGES = {
-    'default': {
-        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
-    'staticfiles': {
-        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# Media URL ni Django o'zi generatsiya qilishi uchun uni bo'sh qoldirgan ma'qul
+# yoki S3 backend ga topshirgan ma'qul. Quyidagicha yozing:
+MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
+
+
+MEDIA_ROOT = ''
 WHITENOISE_MANIFEST_STRICT = False
