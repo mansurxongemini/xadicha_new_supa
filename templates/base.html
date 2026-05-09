@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="0Z34lXj5xBS09-PmrJ0gTz4VstG5LxmQEbywBdoxmbI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Xadicha Sulaymonova - Huquqshunos Olima{% endblock %}</title>
+    <link href="{% static 'css/templatemo-personal-style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="{% block header_class %}{% endblock %}">
+        <div class="nav-container">
+            <div class="logo"><a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">Xadicha Sulaymonova</a></div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
+                <li><a href="{% url 'biography' %}">Tarjimai Hol</a></li>
+                <li><a href="{% url 'books' %}">Ilmiy Meros</a></li>
+                <li><a href="{% url 'blog_list' %}">Bloglar</a></li>
+                <li><a href="{% url 'videos' %}">Videolar</a></li>
+                <li><a href="{% url 'about' %}">Muallif</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+                <div class="hamburger"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="{% url 'home' %}">Bosh Sahifa</a></li>
+            <li><a href="{% url 'about' %}">Sayt Haqida</a></li>
+            <li><a href="{% url 'biography' %}">Tarjimai Hol</a></li>
+            <li><a href="{% url 'books' %}">Ilmiy Meros</a></li>
+            <li><a href="{% url 'videos' %}">Videolar</a></li>
+            <li><a href="{% url 'about' %}">Muallif</a></li>
+        </ul>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Xadicha Sulaymonova Xotira Portali. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/templatemo-personal-javascripts.js' %}"></script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Xadicha Sulaymonova",
+    "description": "O'zbekistonning birinchi huquqshunos ayoli, akademik.",
+    "url": "https://xadichasulaymonova.up.railway.app"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sevdo Xakimxo'jayeva",
+    "description": "Mashhur o'zbek ayol huquqshunosi. Toshkent davlat yuridik universiteti talabasi.",
+    "url": "https://xadichasulaymonova.up.railway.app"
+  }
+]
+</script>
+</body>
+</html>

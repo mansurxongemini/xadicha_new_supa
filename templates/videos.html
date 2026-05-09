@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Videolar - Xadicha Sulaymonova{% endblock %}
+
+{% block content %}
+<section id="videos" class="portfolio" style="padding-top: 120px;">
+    <style>
+        .portfolio-image iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+    </style>
+    <div class="container">
+        <h2 class="section-title fade-in">Videolar va Xotiralar</h2>
+        <div class="portfolio-grid">
+            {% for video in videos %}
+            <div class="portfolio-item">
+                <div class="portfolio-image" style="padding-bottom: 56.25%; position: relative; height: 0; background: #000;">
+                    {% if video.embed_code %}
+                    {{ video.embed_code|safe }}
+                    {% else %}
+                    <p style="color: white; text-align: center; padding-top: 40%;">Video kodi mavjud emas.</p>
+                    {% endif %}
+                </div>
+                <div class="portfolio-content">
+                    <h4>{{ video.title }}</h4>
+                    {% if video.description %}
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666; line-height: 1.4;">{{ video.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p>Hozircha videolar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

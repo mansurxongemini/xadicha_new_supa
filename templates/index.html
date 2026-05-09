@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle " style="color: black;">Huquqshunos Olima</div>
+            <h1 style="color: #ffff;">Xadicha Sulaymonova</h1>
+            <p class="subtitle">O‘zbekistonning birinchi ayol akademigi, huquqshunos olima (1904–1965)</p>
+            <a href="#biography" class="cta-button">Tarjimai holni o'qish</a>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView()"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Sayt Haqida</h2>
+            <div class="about-content">
+                <div class="about-text slide-in-right">
+                    <h3>Ilmiy merosni o‘rganish va targ‘ib qilish</h3>
+                    <p>Ushbu platforma buyuk olima Xadicha Sulaymonovaning ilmiy merosini o‘rganish va keng jamoatchilikka yetkazish maqsadida yaratilgan. Xadicha Sulaymonova nafaqat huquqshunos olima, balki davlat arbobi sifatida ham O‘zbekiston tarixida o‘chmas iz qoldirgan shaxsdir.</p>
+                    <p>Saytda olimaning hayot yo‘li, ilmiy asarlari, monografiyalari va u kishi haqidagi xotiralar jamlangan. Bu resurs talabalar, tadqiqotchilar va tarixga qiziquvchilar uchun muhim manba bo‘lib xizmat qiladi.</p>
+                    <a href="#" style="display: inline-block; margin-top: 10px; color: #d4af37; font-weight: bold;">Batafsil o'qish</a>
+                </div>
+                <div class="about-image slide-in-left" style="background-image: url('https://tsul.uz/images/news/sfs.png');object-position: top;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Biography Section (New) -->
+    <section id="biography" class="about" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title fade-in">Tarjimai Hol</h2>
+            <div class="about-content">
+                {% if biography %}
+                    {% if biography.photo %}
+                    <div class="about-image slide-in-left" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/%D0%A1%D1%83%D0%BB%D0%B0%D0%B9%D0%BC%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0_%D0%A5%D0%B0%D0%B4%D0%B8%D1%87%D0%B0.png/960px-%D0%A1%D1%83%D0%BB%D0%B0%D0%B9%D0%BC%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0_%D0%A5%D0%B0%D0%B4%D0%B8%D1%87%D0%B0.png');object-position: top ; min-height: 300px;"></div>
+                    {% endif %}
+                    <div class="about-text slide-in-right">
+                        <h3>{{ biography.title }}</h3>
+                        <p>{{ biography.content|truncatewords:50 }}</p>
+                         <a href="{% url 'biography' %}" style="display: inline-block; margin-top: 10px; color: #d4af37; font-weight: bold;">Batafsil o'qish</a>
+                    </div>
+                {% else %}
+                    <p>Tarjimai hol ma'lumotlari kiritilmagan.</p>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Blogs Section -->
+    <section id="blogs" class="portfolio">
+        <div class="container">
+            <h2 class="section-title fade-in">Bloglar</h2>
+            <div class="portfolio-grid">
+                {% for news in latest_news %}
+                <div class="portfolio-item">
+                    {% if news.image %}
+                    <div class="portfolio-image" style="background-image: url('{{ news.image.url }}'); min-height: 200px; background-size: cover; background-position: center;"></div>
+                    {% else %}
+                    <div class="portfolio-image" style="background-color: #eee; min-height: 200px;"></div>
+                    {% endif %}
+                    <div class="portfolio-content">
+                        <h4>{{ news.title }}</h4>
+                        <p>{{ news.content|truncatewords:20 }}</p>
+                        <a href="{% url 'blog_detail' news.pk %}" style="display: inline-block; margin-top: 10px; color: #d4af37; font-weight: bold;">Batafsil o'qish</a>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Hozircha yangiliklar yo'q.</p>
+                {% endfor %}
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="{% url 'blog_list' %}" class="cta-button">Barchasini ko'rish</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

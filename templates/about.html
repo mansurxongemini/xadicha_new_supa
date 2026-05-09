@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Muallif va Maqolalar - Xadicha Sulaymonova{% endblock %}
+
+{% block content %}
+
+
+<section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Muallif haqida</h2>
+            <div class="about-content">
+                <div class="about-text slide-in-right">
+                    <h3>{{ author.full_name }}</h3>
+                    <p>{{ author.student_info }}</p>
+                </div>
+                <div class="about-image slide-in-left" style="background-image: url('{{ author.photo.url }}');object-position: top;"></div>
+            </div>
+        </div>
+    </section>
+
+<!-- Scientific Articles Section -->
+<section id="author-articles" style="padding-bottom: 80px; background-color: #f9f9f9;">
+    <div class="container">
+        <h2 class="section-title fade-in ">Muallifning Maqolalari</h2>
+        <div class="portfolio-grid">
+            {% for article in articles %}
+            <div class="portfolio-item">
+                <div class="portfolio-content">
+                    <h4>{{ article.title }}</h4>
+                    <p>{{ article.publication_source }} | {{ article.published_date }}</p>
+                    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">{{ news.created_at|date:"d.m.Y" }}</p>
+                    {% if article.file %}
+                    <a href="{{ article.file.url }}" class="btn-download-sm cta-button" style="margin-top: 10px; color: #333; box-shadow: 0 0 1px 2px #333; width: 100%; text-align: center;" download>Yuklab olish</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align: center; width: 100%;">Hozircha maqolalar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

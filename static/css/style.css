@@ -1,0 +1,174 @@
+/* static/css/style.css */
+
+/* --- Book Section ("Ilmiy Meros") --- */
+.books-grid {
+    display: grid;
+    /* Creates a responsive grid that adds/removes columns based on screen width */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem; /* Sets the space between cards */
+    padding: 2rem 0;
+}
+
+.book-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensures the image corners inside the card are rounded */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.book-card:hover {
+    transform: translateY(-5px); /* Lifts the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.book-card .book-cover {
+    width: 100%;
+    height: 300px; /* Gives all cards a consistent image height */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.book-card h3, .book-card p {
+    margin: 1rem;
+}
+
+.book-card .btn-download {
+    display: block;
+    background-color: #0056b3; /* A professional blue */
+    color: #fff;
+    text-align: center;
+    padding: 0.75rem;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: auto; /* Pushes the button to the bottom of the card */
+    transition: background-color 0.2s;
+}
+
+.book-card .btn-download:hover {
+    background-color: #004494; /* Darker blue on hover */
+}
+
+/* --- Author Profile Styles --- */
+.author-profile {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.author-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.author-name {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.author-bio {
+    color: #777;
+    font-size: 1.1rem;
+}
+
+/* --- Article Grid Styles --- */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.article-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.article-icon {
+    margin-bottom: 15px;
+}
+
+.doc-icon {
+    width: 40px;
+    height: 50px;
+    border: 2px solid #d4af37;
+    border-radius: 4px;
+    position: relative;
+    background: linear-gradient(to bottom right, transparent 0%, transparent 50%, #f9f9f9 50%, #f9f9f9 100%);
+}
+
+.doc-icon::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    right: 6px;
+    height: 2px;
+    background: #d4af37;
+    box-shadow: 0 6px 0 #d4af37, 0 12px 0 #d4af37;
+}
+
+.article-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.btn-download-sm {
+    margin-top: auto;
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #d4af37;
+    color: #fff;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.btn-download-sm:hover {
+    background-color: #b39020;
+}
+
+/* --- Biography Page Styles --- */
+.biography-columns {
+    column-count: 1;
+    column-gap: 3rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+}
+
+@media (min-width: 768px) {
+    .biography-columns {
+        column-count: 2;
+        column-rule: 1px solid #eee; /* Ustunlar orasiga ingichka chiziq qo'shadi */
+    }
+}

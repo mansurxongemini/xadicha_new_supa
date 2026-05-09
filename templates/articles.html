@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ilmiy Maqolalar - Xadicha Sulaymonova{% endblock %}
+
+{% block content %}
+<section id="articles" class="about" style="padding-top: 120px; background-color: #f9f9f9;">
+    <div class="container">
+        <h2 class="section-title fade-in">Ilmiy Maqolalar</h2>
+        <div class="article-list">
+            {% for article in articles %}
+            <div class="article-item" style="background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <h4 style="margin-top: 0;">{{ article.title }}</h4>
+                <p><strong>Nashr:</strong> {{ article.publication_source }}</p>
+                <p><strong>Sana:</strong> {{ article.published_date|date:"d F Y" }}</p>
+                {% if article.file %}
+                <a href="{{ article.file.url }}" class="cta-button" style="margin-top: 10px; color: #333; box-shadow: 0 0 1px 2px #333; width: 100%; text-align: center;" download>Maqolani Yuklash (PDF)</a>
+                {% else %}
+                <p class="text-muted">Fayl mavjud emas.</p>
+                {% endif %}
+            </div>
+            {% empty %}
+            <p>Hozircha ilmiy maqolalar mavjud emas.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

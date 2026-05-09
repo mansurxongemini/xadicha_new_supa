@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xadichasulaymonova.up.railway.app/sitemap.xml
+
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /

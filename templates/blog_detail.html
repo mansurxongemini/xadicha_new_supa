@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ blog.title }} - Xadicha Sulaymonova{% endblock %}
+
+{% block content %}
+<section class="about" style="padding-top: 120px; padding-bottom: 80px; background-color: #fff;">
+    <div class="container">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title fade-in" style="text-align: left; margin-bottom: 20px;">{{ blog.title }}</h2>
+            <p style="color: #888; margin-bottom: 30px;">Nashr qilingan sana: {{ blog.created_at|date:"d F Y" }}</p>
+            
+            {% if blog.image %}
+            <div style="margin-bottom: 40px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" style="width: 100%; height: auto; display: block;">
+            </div>
+            {% endif %}
+
+            <div class="about-text" style="font-size: 1.1rem; line-height: 1.8; color: #333;">
+                {{ blog.content|linebreaks }}
+            </div>
+            
+            <div style="margin-top: 50px;">
+                <a href="{% url 'blog_list' %}" class="cta-button" style="padding: 10px 30px; font-size: 0.9rem;">Ortga qaytish</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
