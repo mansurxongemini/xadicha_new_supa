@@ -12,12 +12,6 @@ sitemaps = {
     'static': StaticViewSitemap,
     'blog': BlogSitemap,
 }
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
-# Loginni 'rmc_admin', parolni 'rmc12345' qilib yaratamiz
-if not User.objects.filter(username='admin_all').exists():
-    User.objects.create_superuser('admin_all', 'mansurxongemini@gmail.com', '123')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
