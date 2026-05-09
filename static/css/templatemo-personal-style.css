@@ -656,7 +656,7 @@ https://templatemo.com/tm-593-personal-shape
         .about-image {
             width: 100%;
             height: 500px;
-            background: url('images/smiling-girl-computer-desktop.jpg') center/cover;
+            background: url('../images/smiling-girl-computer-desktop.jpg') center/cover;
             border-radius: 30px;
             position: relative;
             overflow: hidden;
@@ -775,27 +775,27 @@ https://templatemo.com/tm-593-personal-shape
         }
 
         .portfolio-item:nth-child(1) .portfolio-image {
-            background-image: url('images/working-business-women.jpg');
+            background-image: url('../images/working-business-women.jpg');
         }
 
         .portfolio-item:nth-child(2) .portfolio-image {
-            background-image: url('images/computer-desk-stickers.jpg');
+            background-image: url('../images/computer-desk-stickers.jpg');
         }
 
         .portfolio-item:nth-child(3) .portfolio-image {
-            background-image: url('images/curved-display-pinky-girl.jpg');
+            background-image: url('../images/curved-display-pinky-girl.jpg');
         }
 
         .portfolio-item:nth-child(4) .portfolio-image {
-            background-image: url('images/dashboard-interfaces-transparent-displays.jpg');
+            background-image: url('../images/dashboard-interfaces-transparent-displays.jpg');
         }
 
         .portfolio-item:nth-child(5) .portfolio-image {
-            background-image: url('images/marketing-strategy-women.jpg');
+            background-image: url('../images/marketing-strategy-women.jpg');
         }
 
         .portfolio-item:nth-child(6) .portfolio-image {
-            background-image: url('images/portfolio-website-girl.jpg');
+            background-image: url('../images/portfolio-website-girl.jpg');
         }
 
         .portfolio-image::before {

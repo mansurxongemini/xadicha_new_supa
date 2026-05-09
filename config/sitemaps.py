@@ -23,11 +23,6 @@ class BlogSitemap(sitemaps.Sitemap):
     priority = 0.8
     protocol = 'https'
 
-    def get_domain(self, site=None):
-        return 'xadichasulaymonova.up.railway.app'
-
     def items(self):
+        # objects.all() ni faqat items() ichida ishlating
         return NewsBlog.objects.all()
-
-    def location(self, obj):
-        return reverse('blog_detail', args=[obj.pk])
