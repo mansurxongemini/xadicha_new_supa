@@ -172,3 +172,24 @@
         column-rule: 1px solid #eee; /* Ustunlar orasiga ingichka chiziq qo'shadi */
     }
 }
+
+/* Ensure biography image always visible and responsive */
+.about-image {
+    background-size: cover;
+    background-position: top;
+    overflow: hidden;
+    border-radius: 10px;
+    min-height: 260px;
+    display: block;
+    position: relative;
+    object-position: center;
+}
+.about-image-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+@media (min-width: 768px) {
+    .about-image { min-height: 320px; }
+}

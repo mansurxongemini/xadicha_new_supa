@@ -15,7 +15,7 @@
         <div class="hero-content">
             <div class="hero-subtitle " style="color: black;">Huquqshunos Olima</div>
             <h1 style="color: #ffff;">Xadicha Sulaymonova</h1>
-            <p class="subtitle">O‘zbekistonning birinchi ayol akademigi, huquqshunos olima (1904–1965)</p>
+            <p class="subtitle">Ilk o'zbek huquqshunos ayoli <br>(1913–1965)</p>
             <a href="#biography" class="cta-button">Tarjimai holni o'qish</a>
         </div>
         <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView()"></div>
@@ -38,26 +38,7 @@
     </section>
 
     <!-- Biography Section (New) -->
-    <section id="biography" class="about" style="background-color: #f9f9f9;">
-        <div class="container">
-            <h2 class="section-title fade-in">Tarjimai Hol</h2>
-            <div class="about-content">
-                {% if biography %}
-                    {% if biography.photo %}
-                    <div class="about-image slide-in-left" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/%D0%A1%D1%83%D0%BB%D0%B0%D0%B9%D0%BC%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0_%D0%A5%D0%B0%D0%B4%D0%B8%D1%87%D0%B0.png/960px-%D0%A1%D1%83%D0%BB%D0%B0%D0%B9%D0%BC%D0%B0%D0%BD%D0%BE%D0%B2%D0%B0_%D0%A5%D0%B0%D0%B4%D0%B8%D1%87%D0%B0.png');object-position: top ; min-height: 300px;"></div>
-                    {% endif %}
-                    <div class="about-text slide-in-right">
-                        <h3>{{ biography.title }}</h3>
-                        <p>{{ biography.content|truncatewords:50 }}</p>
-                         <a href="{% url 'biography' %}" style="display: inline-block; margin-top: 10px; color: #d4af37; font-weight: bold;">Batafsil o'qish</a>
-                    </div>
-                {% else %}
-                    <p>Tarjimai hol ma'lumotlari kiritilmagan.</p>
-                {% endif %}
-                </div>
-            </div>
-        </div>
-    </section>
+
 
 
     <!-- Blogs Section -->
