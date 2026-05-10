@@ -152,19 +152,28 @@ AWS_S3_ADDRESSING_STYLE = 'path'  # Supabase 'virtual' uslubni tanimaydi, faqat 
 AWS_QUERYSTRING_AUTH = True       # Har bir havola uchun avtomatik imzo yaratadi
 
 # Statik fayllar va Media uchun Storage sozlamalari
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
-# Media URL ni Django o'zi generatsiya qilishi uchun uni bo'sh qoldirgan ma'qul
-# yoki S3 backend ga topshirgan ma'qul. Quyidagicha yozing:
-MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
-
-
-MEDIA_ROOT = ''
+# LOCAL DEVELOPMENT: Use local file storage when DEBUG is True
+# PRODUCTION: Use S3 storage
+if DEBUG:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
+    MEDIA_ROOT = ''
 WHITENOISE_MANIFEST_STRICT = False

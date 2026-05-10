@@ -655,9 +655,8 @@ https://templatemo.com/tm-593-personal-shape
 
         .about-image {
             width: 100%;
-            min-height: 500px;
-            background: url('../images/smiling-girl-computer-desktop.jpg') center/cover;
             border-radius: 30px;
+            height: 800px;
             position: relative;
             overflow: hidden;
             box-shadow: var(--shadow-2xl);
