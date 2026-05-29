@@ -140,20 +140,25 @@ STATICFILES_DIRS = [
 
 # config/settings.py ichidagi AWS/S3 qismini shu bilan almashtir:
 
+# config/settings.py
+
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'xadicha')
 AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
 
-# MUHIM: Supabase uchun quyidagi 4 ta sozlama shart!
-AWS_S3_REGION_NAME = 'us-east-1'  # Supabase S3 uchun doim us-east-1 bo'lishi kerak
-AWS_S3_SIGNATURE_VERSION = 's3v4' # Imzo versiyasi v4 bo'lishi shart
-AWS_S3_ADDRESSING_STYLE = 'path'  # Supabase 'virtual' uslubni tanimaydi, faqat 'path'
-AWS_QUERYSTRING_AUTH = False       # Har bir havola uchun avtomatik imzo yaratadi
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_ADDRESSING_STYLE = 'path'
 
-# Statik fayllar va Media uchun Storage sozlamalari
-# LOCAL DEVELOPMENT: Use local file storage when DEBUG is True
-# PRODUCTION: Use S3 storage
+# 1. Shifrlangan va vaqtinchalik tokenlar generatsiyasini o'chiramiz
+AWS_QUERYSTRING_AUTH = False 
+
+# 2. Supabase loyihangizning ID kodi asosida ommaviy domenni belgilaymiz
+SUPABASE_PROJECT_ID = "rzitnticdflzfqbtteeh"
+AWS_S3_CUSTOM_DOMAIN = f"{SUPABASE_PROJECT_ID}.supabase.co/storage/v1/object/public/{AWS_STORAGE_BUCKET_NAME}"
+
+# Storage sozlamalari
 if DEBUG:
     STORAGES = {
         "default": {
@@ -174,6 +179,8 @@ else:
             "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
         },
     }
-    MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/"
+    # 3. Media URL endi to'g'ridan-to'g'ri ommaviy formatga o'tadi
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
     MEDIA_ROOT = ''
+
 WHITENOISE_MANIFEST_STRICT = False
