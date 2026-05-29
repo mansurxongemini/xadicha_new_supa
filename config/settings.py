@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-change-me')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ['true', '1', 't']
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [
     'https://*.onrender.com',
@@ -149,7 +149,7 @@ AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
 AWS_S3_REGION_NAME = 'us-east-1'  # Supabase S3 uchun doim us-east-1 bo'lishi kerak
 AWS_S3_SIGNATURE_VERSION = 's3v4' # Imzo versiyasi v4 bo'lishi shart
 AWS_S3_ADDRESSING_STYLE = 'path'  # Supabase 'virtual' uslubni tanimaydi, faqat 'path'
-AWS_QUERYSTRING_AUTH = True       # Har bir havola uchun avtomatik imzo yaratadi
+AWS_QUERYSTRING_AUTH = False       # Har bir havola uchun avtomatik imzo yaratadi
 
 # Statik fayllar va Media uchun Storage sozlamalari
 # LOCAL DEVELOPMENT: Use local file storage when DEBUG is True
